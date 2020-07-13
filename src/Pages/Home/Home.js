@@ -17,7 +17,6 @@ class Home extends Component {
 
     };
 
-
     getUser = async (user) => {
         const { data } = await api.get(`/users/${this.state.user}`)
         console.log(data)
