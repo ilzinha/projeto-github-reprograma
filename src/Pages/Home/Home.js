@@ -1,38 +1,49 @@
 import React, { Component } from 'react';
 import MainTitle from '../../Components/MainTitle/MainTitle';
 import SearchBar from '../../Components/SearchBar/SearchBar';
-import api from '../../Services/api';
+import Api from '../../Services/api';
+
 
 class Home extends Component {
     constructor() {
         super();
         this.state = {
-            user: ''
+            data: '',
+            user: '',
+            error: ''
         }
-        
+
     }
-  
+
+
     handleChange = (e) => {
         this.setState({ user: e.target.value });
 
     };
 
-    getUser = async (user) => {
-        const { data } = await api.get(`/users/${this.state.user}`)
-        console.log(data)
-        return data;
-    }
+    seacrhUser = async () => {
+        const { user } = this.state
 
-    getRepos = async (user) => {
-        const { data } = await api.get(`/users/${this.state.user}/repos`)
-        console.log(data)
-        return data;
-    }
+        user
+            ? await Api.get(`/users/${this.state.user}`)
+                .then(response => {
+                    this.props.history.push({
+                        pathname: '/userprofile',
+                        state: response.data
+                    })
+                })
+                .catch(error =>
+                    this.setState({ error: 'Nenhum usuário encontrado!', user: '' })
+                )
+            : this.setState({ error: 'Por favor, insira usuário!' });
+    };
+
+
 
     render() {
 
-        const { user } = this.state;
-        console.log(user)
+        const { user, error } = this.state;
+
         return (
             <div>
                 <MainTitle title="Github Search" />
@@ -42,8 +53,9 @@ class Home extends Component {
                     type='text'
                     value={user}
                     onChange={this.handleChange}
-                    onClick={this.getUser}
+                    onClick={this.seacrhUser}
                 />
+                {error && <h3>{error}</h3>}
 
             </div>
         );
