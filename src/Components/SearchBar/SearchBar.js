@@ -3,9 +3,9 @@ import './SearchBar.css';
 
 const SearchBar = ({ placeholder, text, onClick, value, type, onChange}) => {
     return (
-        <div>
+        <div className="login-box">
             <input value={value} placeholder={placeholder} type={type} onChange={onChange} />
-            <button onClick={onClick}>{text}</button>
+            <button className="btn" onClick={onClick}>{text}</button>
         </div>
     )
 }
