@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import Profile from '../../Components/Profile/Profile';
 import Api from '../../Services/api'
-// import Repositories from '../../Components/Repositories/Repositories';
+import Repositories from '../../Components/Repositories/Repositories';
+
+import './UserProfile.css'
 
 
 class UserProfile extends Component {
@@ -17,28 +19,26 @@ class UserProfile extends Component {
 
     componentDidMount = async () => {
         const { location } = this.props;
-        const repos = await Api.get(`/users/${this.state.user}/repos`)
 
-        this.setState({ user: location.state.response.login, repos })
+        const user = location.state.login
+
+        const repos = await Api.get(`/users/${user}/repos`)
+
+        this.setState({ user, repos:repos.data })
+
+        
 
     }
-
-    // getRepos = async (user) => {
-    //     const { data } = await Api.get(`/users/${this.state.user}/repos`)
-    //     console.log(data)
-    //     return data;
-    // }
 
 
     render() {
         const { repos } = this.state;
-        console.log(this.props.history.location.state.repos_url)
-        // console.log(repos)
         const { name, bio, avatar_url, location, repos_url, followers, following } = this.props.history.location.state
-        return (
-            <div>
 
-                <div>
+        return (
+            <div className="userProfile__container">
+
+                <div className="userProfile">
                     <Profile
                         name={name}
                         bio={bio}
@@ -49,13 +49,10 @@ class UserProfile extends Component {
                         following={following}
                     />
                 </div>
-                <div>
+                <hr className="line"/>
+                <div className="userRepos">
+                   <Repositories repos={repos} />
 
-                    {repos.length ? (
-                        <Repositories repos={repos_url} />
-                    ) : (
-                            <h3>Nenhum repositório encontrado</h3>
-                        )}
                 </div>
             </div>
 
