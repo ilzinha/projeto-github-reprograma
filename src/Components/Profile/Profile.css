@@ -1,0 +1,20 @@
+.photo {
+    max-width: 300px;
+}
+
+.bio {
+    text-align: left;
+}
+
+.iconNumbers {
+    display: flex;
+    padding: 10px;
+}
+
+.iconNumbers p > span{
+    font-weight: 700;
+}
+
+.iconNumbers img {
+    margin-right: 10px;
+}

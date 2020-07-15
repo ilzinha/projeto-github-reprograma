@@ -1,0 +1,27 @@
+.userProfile__container{
+   display: flex;
+  justify-content: space-between;
+
+}
+
+.userProfile {
+
+}
+
+.line{ 
+    margin: 0 100px;
+    border: 1px solid #b8b5b5;
+}
+
+@media screen and (max-width:915px) {
+    .line {
+        display: none
+    }
+
+    .userProfile__container{
+        display: flex;
+        flex-wrap: wrap;
+       justify-content: center;
+     
+     }
+}

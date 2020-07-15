@@ -1,0 +1,20 @@
+.repos__container{
+    text-align: left;
+}
+
+.repoCard > hr {
+    border: 1px solid #b8b5b56e;
+}
+
+.repoName {
+    font-size: 28px;
+    text-transform: uppercase;
+}
+
+.stars {
+    display: flex;
+}
+
+.stars img {
+    margin-right: 10px;
+}
