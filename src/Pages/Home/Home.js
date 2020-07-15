@@ -4,6 +4,9 @@ import SearchBar from '../../Components/SearchBar/SearchBar';
 import Api from '../../Services/api';
 
 
+import './Home.css'
+
+
 class Home extends Component {
     constructor() {
         super();
@@ -25,11 +28,12 @@ class Home extends Component {
         const { user } = this.state
 
         user
-            ? await Api.get(`/users/${this.state.user}`)
+            ? await Api.get(`/users/${user}`)
                 .then(response => {
                     this.props.history.push({
                         pathname: '/userprofile',
-                        state: response.data
+                        state: response.data,
+
                     })
                 })
                 .catch(error =>
@@ -45,11 +49,13 @@ class Home extends Component {
         const { user, error } = this.state;
 
         return (
-            <div>
-                <MainTitle title="Github Search" />
+            <div className="home__container">
+                <MainTitle
+                    title="Github Search"
+                />
                 <SearchBar
                     placeholder='Digite um usuário'
-                    text='search'
+                    text='Search'
                     type='text'
                     value={user}
                     onChange={this.handleChange}
