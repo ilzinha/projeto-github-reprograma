@@ -6,6 +6,10 @@
     border: 1px solid #b8b5b56e;
 }
 
+.repoCard > a {
+    text-decoration: none;
+}
+
 .repoName {
     font-size: 28px;
     text-transform: uppercase;

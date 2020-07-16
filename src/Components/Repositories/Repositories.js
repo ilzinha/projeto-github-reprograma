@@ -12,7 +12,7 @@ const Repositories = ({ repos }) => {
                 .map((repo, index) => {
                     return (
                         <div className="repoCard" key={`repo_${index + 1}`}>
-                            <h3 className="repoName">{repo.name}</h3>
+                            <a href={repo.html_url} className="repoName">{repo.name}</a>
                             <p>{repo.description}</p>
                             <div className="stars">
                                 <img src={IconStar} alt="icone estrela"/>

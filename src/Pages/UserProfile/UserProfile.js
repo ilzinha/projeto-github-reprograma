@@ -34,7 +34,7 @@ class UserProfile extends Component {
     render() {
         const { repos } = this.state;
         const { name, bio, avatar_url, location, repos_url, followers, following } = this.props.history.location.state
-
+console.log(repos)
         return (
             <div className="userProfile__container">
 
